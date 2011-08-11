@@ -1,0 +1,27 @@
+﻿
+
+
+@using Validation.Models
+@model IEnumerable<Product>
+@{
+    Layout = "_Layout.cshtml";
+}
+@section head{
+    <title>@ViewBag.Title</title>
+}
+@RenderBody()
+<hr/>
+@FormatProducts(ViewBag.Products)
+
+@helper FormatProducts(IEnumerable<Product> products)
+{
+    <ul>
+    @foreach (var product in products)
+    {
+        <li>
+            <h3>@product.Description</h3>
+            <h4>@product.Price</h4>
+        </li>
+    }
+    </ul>
+}

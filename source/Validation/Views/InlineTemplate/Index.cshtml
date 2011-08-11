@@ -1,0 +1,48 @@
+﻿@using Validation.Controllers
+@model IEnumerable<string>
+
+<h2>First pass, string.Join</h2>
+<p>
+    @string.Join(", ", Model)
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+<h2>Now we need a template and some shenanigans</h2>
+<p>
+@for (var i = 0; i < Model.Count(); i++)
+{
+    if (i == Model.Count() - 1)
+    {
+        <span style="color: red">@Model.ElementAt(i)</span>
+    }
+    else
+    {
+        <span style="color:red">@Model.ElementAt(i)</span><text>, </text>
+    }
+} 
+</p>
+*@
+
+
+@*
+<h2>That sucks, let's inline that template</h2>
+
+@Model.TemplatedJoin(@<span style="color:red">@item</span>, ", ")
+*@

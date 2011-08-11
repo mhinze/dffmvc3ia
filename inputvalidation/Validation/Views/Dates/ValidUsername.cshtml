@@ -1,0 +1,10 @@
+﻿@using Validation.Controllers
+@model TwoDatesModel
+
+<h1>Unobtrusive Client-side Validation</h1>
+
+@using (Html.BeginForm()) {
+    
+    @Html.EditorForModel()
+    <button type="submit">Register</button>
+}

@@ -1,44 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Validation.Controllers
+namespace Validation.Models
 {
-    public class TwoDatesModel
-    {
-        [Required]
-        public DateTime? Earlier { get; set; }
-
-        [Required]
-        [DateComesLater("Earlier")]
-        public DateTime? Later { get; set; }
-    }
-
-    public class DatesController : Controller
-    {
-        [HttpGet]
-        public ViewResult ValidUsername()
-        {
-            return View(new TwoDatesModel());
-        }
-
-        [HttpPost]
-        public ActionResult ValidUsername(TwoDatesModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            return RedirectToAction("Valid");
-        }
-
-        public ViewResult Valid()
-        {
-            return View();
-        }
-    }
-
     public class DateComesLaterAttribute : ValidationAttribute, IClientValidatable
     {
         public const string DefaultErrorMessage = "'{0}' must be after '{1}'";
@@ -55,8 +21,8 @@ namespace Validation.Controllers
             object instance = validationContext.ObjectInstance;
             Type type = validationContext.ObjectType;
 
-            var earlierDate = (DateTime?) type.GetProperty(_otherDateProperty).GetValue(instance, null);
-            var date = (DateTime?) value;
+            var earlierDate = (DateTime?)type.GetProperty(_otherDateProperty).GetValue(instance, null);
+            var date = (DateTime?)value;
 
             if (date > earlierDate)
                 return ValidationResult.Success;
@@ -78,10 +44,10 @@ namespace Validation.Controllers
                                                                                ControllerContext context)
         {
             var rule = new ModelClientValidationRule
-                {
-                    ErrorMessage = GetErrorMessage(metadata.ContainerType, metadata.GetDisplayName()) + " (via client validation)",
-                    ValidationType = "later",
-                };
+                           {
+                               ErrorMessage = GetErrorMessage(metadata.ContainerType, metadata.GetDisplayName()) + " (via client validation)",
+                               ValidationType = "later",
+                           };
 
             rule.ValidationParameters.Add("other", "*." + _otherDateProperty);
 

@@ -1,0 +1,40 @@
+﻿@using Validation.Models
+@model FunctionalTestModel
+<script>
+    module('Later', {
+        setup: function () {
+            S.open('@Url.Action(Model.TestName, Model.ControllerName)');
+        }
+    });
+
+    test("page has content", function () {
+        ok(S("body *").size(), "There be elements in that there body");
+    });
+
+    test("fields are required", function () {
+        S('button').click(function () {
+            ok(S('span[for=Earlier]').html() == "The Earlier field is required.", "earlier message appears");
+            ok(S('span[for=Later]').html() == "The Later field is required.", "later message appears");
+        });
+    });
+
+    test("later date must be later", function () {
+        S('input#Earlier').type('12/2/2001');
+        S('input#Later').type('12/1/2001');
+        S('input#Earlier').click(function () {
+            ok(S('span[for=Later]').html() == "'Later' must be after 'Earlier' (via client validation)", "later message appears");
+        });
+    });
+
+    test("valid case should pass validation", function () {
+        S('input#Earlier').type('12/1/2001');
+        S('input#Later').type('12/2/2001');
+        S('input#Earlier').click(function () {
+            var html = S('span[for=Later]').html();
+
+            console.log(html);
+            ok(html === null, "valid case is good");
+        });
+    });
+</script>
+

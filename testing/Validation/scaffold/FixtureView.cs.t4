@@ -1,0 +1,5 @@
+﻿<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output extension="cshtml" #>
+
+
+<h2><#= Model.ViewName #></h2>

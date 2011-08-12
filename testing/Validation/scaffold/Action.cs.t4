@@ -1,0 +1,7 @@
+﻿<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+public ViewResult <#= Model.Action #>()
+{
+    // this action/view sets up the UI for testing
+
+	return View();
+}

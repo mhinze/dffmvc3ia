@@ -1,0 +1,20 @@
+﻿<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output extension="cshtml" #>
+@using Validation.Models
+@model FunctionalTestModel
+<script>
+
+	// please see the url below for funcunit documentation
+	// http://funcunit.com/
+	
+    module('<#= Model.ViewName #>', {
+        setup: function () {			
+            S.open('@Url.Action(Model.TestName, Model.ControllerName)');
+        }
+    });
+	
+    test("test description goes here", function () {
+		// exercise and assert
+	});
+    
+</script>

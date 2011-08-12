@@ -5,9 +5,27 @@ namespace Validation.Controllers
 {
     public class ChooseUsernameModel
     {
-        [Remote("IsTaken", "Username", ErrorMessage = "Username is taken!")]
+        [Remote("IsTaken", "Username", 
+            ErrorMessage = "Username is taken!")]
         public string Username { get; set; }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public class UsernameController : Controller
     {

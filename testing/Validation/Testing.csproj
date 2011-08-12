@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -59,9 +62,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\DatesController.cs" />
-    <Compile Include="Controllers\FunctionalTestFixtureController.cs" />
+    <Compile Include="Models\DateComesLaterAttribute.cs" />
+    <Compile Include="Controllers\FunctionalTestFixturesController.cs" />
+    <Compile Include="Models\FunctionalTestModel.cs" />
+    <Compile Include="Controllers\FunctionalTestRunnerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\TwoDatesModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -75,7 +81,6 @@
     <Content Include="Scripts\funcunit\qunit\qunit.css" />
     <Content Include="Scripts\funcunit\scripts\run.js" />
     <Content Include="Scripts\funcunit\settings.js" />
-    <Content Include="Scripts\funcunit\tests\tests.js" />
     <Content Include="Scripts\later.js" />
   </ItemGroup>
   <ItemGroup>
@@ -171,23 +176,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Dates\ValidUsername.cshtml" />
+    <Content Include="Views\FunctionalTestRunner\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Dates\Valid.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\FunctionalTestFixture\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="scaffold\Action.cs.t4" />
+    <None Include="scaffold\FixtureView.cs.t4" />
+    <None Include="scaffold\FuncTest.ps1" />
+    <None Include="scaffold\TestView.cs.t4" />
     <None Include="Scripts\funcunit\envjs" />
     <None Include="Scripts\funcunit\envjs.bat" />
+    <Content Include="Views\FunctionalTestFixtures\Later.cshtml" />
+    <Content Include="Views\FunctionalTestRunner\Later.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
